@@ -5,6 +5,11 @@ using Microsoft.UI.Xaml;
 using Microsoft.Windows.AppLifecycle;
 using Windows.ApplicationModel.Activation;
 using StartDeck.Services;
+using Microsoft.UI.Windowing;
+using WinRT.Interop;
+using Windows.Graphics;
+using StartDeck.Filtering;
+using StartDeck.Sources;
 
 namespace StartDeck;
 
@@ -16,10 +21,21 @@ public partial class App : Application
     private bool _isWindowVisible;
     private readonly bool _suppressHideForDebug;
     private readonly IconService _iconService = new();
+    private readonly AppCatalogService _catalogService;
+    private readonly PositioningService _positioningService = new();
+    private readonly Stopwatch _launchStopwatch = Stopwatch.StartNew();
+    private bool _firstShowLogged;
 
     public App()
     {
         InitializeComponent();
+        _catalogService = new AppCatalogService(
+            new FileSystemStartMenuSource(),
+            new IAppFilter[]
+            {
+                new ExtensionFilter(".lnk"),
+                new KeywordFilter()
+            });
         _suppressHideForDebug = Debugger.IsAttached ||
                                 string.Equals(Environment.GetEnvironmentVariable("STARTDECK_DEBUG_NOHIDE"), "1", StringComparison.OrdinalIgnoreCase);
     }
@@ -77,8 +93,9 @@ public partial class App : Application
     {
         if (_window == null)
         {
-            _window = new MainWindow();
+            _window = new MainWindow(_catalogService, _iconService);
             _window.Activated += OnWindowActivated;
+            _window.Closed += OnWindowClosed;
             _window.Hide(); // preheat hidden
             _isWindowVisible = false;
         }
@@ -91,8 +108,10 @@ public partial class App : Application
             return;
         }
 
+        PositionWindow();
         _window.Activate();
         _isWindowVisible = true;
+        LogFirstShow();
     }
 
     private void HideWindow()
@@ -105,6 +124,7 @@ public partial class App : Application
         _window.Hide();
         _isWindowVisible = false;
         _iconService.ScheduleTrimAfterHide(TimeSpan.FromMinutes(5));
+        LogMemory("HideWindow");
     }
 
     private void ToggleWindow()
@@ -127,9 +147,65 @@ public partial class App : Application
         }
     }
 
+    private void OnWindowClosed(object sender, WindowEventArgs args)
+    {
+        // Prevent full teardown; keep services alive for fast wake. If you want to exit, remove this handler.
+        args.Handled = true;
+        HideWindow();
+    }
+
+    private void PositionWindow()
+    {
+        var appWindow = GetAppWindow();
+        if (appWindow == null)
+        {
+            return;
+        }
+
+        var size = appWindow.Size;
+        if (size.Width <= 0 || size.Height <= 0)
+        {
+            size = new SizeInt32(680, 560);
+        }
+
+        var rect = _positioningService.GetPlacement(size.Width, size.Height);
+        appWindow.MoveAndResize(rect);
+    }
+
+    private AppWindow? GetAppWindow()
+    {
+        if (_window == null)
+        {
+            return null;
+        }
+
+        var hwnd = WindowNative.GetWindowHandle(_window);
+        var windowId = Win32Interop.GetWindowIdFromWindow(hwnd);
+        return AppWindow.GetFromWindowId(windowId);
+    }
+
     private static void HandleActivationPayload(string? payload)
     {
         // Placeholder for future activation data (e.g., --search).
         _ = payload;
+    }
+
+    private void LogFirstShow()
+    {
+        if (_firstShowLogged)
+        {
+            return;
+        }
+
+        _firstShowLogged = true;
+        _launchStopwatch.Stop();
+        Debug.WriteLine($"StartDeck: Activation->FirstShow {_launchStopwatch.ElapsedMilliseconds} ms");
+        LogMemory("FirstShow");
+    }
+
+    private static void LogMemory(string context)
+    {
+        var bytes = GC.GetTotalMemory(false);
+        Debug.WriteLine($"StartDeck: {context} GC total {bytes / 1024 / 1024} MB");
     }
 }

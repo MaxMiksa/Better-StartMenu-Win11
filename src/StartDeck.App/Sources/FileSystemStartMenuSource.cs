@@ -23,10 +23,13 @@ public sealed class FileSystemStartMenuSource : IAppSource
 
     public Task<IReadOnlyList<AppEntry>> GetAppsAsync(CancellationToken cancellationToken)
     {
-        var results = new List<AppEntry>();
-        ScanRoot(_userRoot, isUserScope: true, results, cancellationToken);
-        ScanRoot(_systemRoot, isUserScope: false, results, cancellationToken);
-        return Task.FromResult<IReadOnlyList<AppEntry>>(results);
+        return Task.Run(() =>
+        {
+            var results = new List<AppEntry>();
+            ScanRoot(_userRoot, isUserScope: true, results, cancellationToken);
+            ScanRoot(_systemRoot, isUserScope: false, results, cancellationToken);
+            return (IReadOnlyList<AppEntry>)results;
+        }, cancellationToken);
     }
 
     private void ScanRoot(string root, bool isUserScope, List<AppEntry> sink, CancellationToken ct)
@@ -85,7 +88,7 @@ public sealed class FileSystemStartMenuSource : IAppSource
             ((IPersistFile)shellLink).Load(lnkPath, (uint)STGM.STGM_READ);
 
             Span<char> buffer = stackalloc char[1024];
-            var hres = shellLink.GetPath(ref MemoryMarshal.GetReference(buffer), buffer.Length, null, 0);
+            var hres = shellLink.GetPath(ref MemoryMarshal.GetReference(buffer), buffer.Length, null, (uint)SLGP_FLAGS.SLGP_RAWPATH);
             if (hres.Failed)
             {
                 return null;

@@ -1,0 +1,13 @@
+<Directives xmlns="http://schemas.microsoft.com/netfx/2013/01/metadata">
+  <Application>
+    <!-- Preserve MVVM Toolkit generated code -->
+    <Assembly Name="CommunityToolkit.Mvvm" Dynamic="Required All" />
+    
+    <!-- Preserve Windows App SDK core types -->
+    <Assembly Name="Microsoft.WindowsAppSDK" Dynamic="Required All" />
+    <Assembly Name="Microsoft.UI.Xaml" Dynamic="Required All" />
+    
+    <!-- Preserve our own assembly logic -->
+    <Assembly Name="StartDeck.App" Dynamic="Required All" />
+  </Application>
+</Directives>

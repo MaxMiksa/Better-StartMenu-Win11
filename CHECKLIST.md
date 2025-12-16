@@ -14,7 +14,7 @@
 
 ## 2. 数据扫描与过滤
 - [x] 数据源：系统/用户开始菜单目录递归；实现 `IAppSource` 便于扩展。
-- [ ] 应用启动时执行一次全量扫描，保证初始列表完整；后续由监听/兜底维护。
+- [x] 应用启动时执行一次全量扫描，保证初始列表完整；后续由监听/兜底维护。
 - [x] FileSystemWatcher 监听新增/删除/重命名；失效或异常时，Show 时若 LastScanTime > 1h 触发静默全量扫描；退出/释放时调用 `Dispose()`。
 - [x] LNK 解析：仅用 CsWin32 `IShellLinkW`/`IPersistFile`；COM 异常或目标缺失 -> `IsValid=false` 并移除。
 - [x] 过滤链：`ExtensionFilter(.lnk)`；关键词屏蔽（uninstall/卸载/help/帮助/readme/说明/website/网站/url，不区分大小写）；用户级优先去重（同名以用户级覆盖系统级）。
@@ -28,34 +28,34 @@
 - [ ] 监控：GDI Objects 不增长；内存峰值 <50MB，回落 <30MB。
 
 ## 4. UI/UX 规范实现
-- [ ] 窗口：无标题栏，宽 600-700px，高 500-600px，圆角 8px，1px 高亮边框；背景材质优先级 MicaAlt (Win11 22000+)-> Acrylic (Win10 17134+)-> 纯色；使用 ThemeResource 不硬编码颜色。
-- [ ] 布局：顶部标题+搜索位（可占位）+刷新；中部分组标题 14px/60% 透明，下边距 8px；应用单元 80-90px 宽/80px 高，图标 32px，文字 12px 居中两行省略；底部栏 48px 显示头像+用户名，电源菜单含关机/重启/睡眠。
-- [ ] 动效：EntranceThemeTransition 入场；悬停高亮；点击 Tilt；骨架屏到真实数据使用 Opacity 平滑过渡避免闪烁。
-- [ ] 列表性能：强制虚拟化（GridView/ItemsRepeater + VirtualizingLayout/ItemsStackPanel）；`x:Phase`（0 背景、1 文本、2 图标）分阶段渲染。
+- [x] 窗口：无标题栏，宽 600-700px，高 500-600px，圆角 8px，1px 高亮边框；背景材质优先级 MicaAlt (Win11 22000+)-> Acrylic (Win10 17134+)-> 纯色；使用 ThemeResource 不硬编码颜色。
+- [x] 布局：顶部标题+搜索位（可占位）+刷新；中部分组标题 14px/60% 透明，下边距 8px；应用单元 80-90px 宽/80px 高，图标 32px，文字 12px 居中两行省略；底部栏 48px 显示头像+用户名，电源菜单含关机/重启/睡眠。
+- [x] 动效：EntranceThemeTransition 入场；悬停高亮；点击 Tilt；骨架屏到真实数据使用 Opacity 平滑过渡避免闪烁。
+- [x] 列表性能：强制虚拟化（GridView/ItemsRepeater + VirtualizingLayout/ItemsStackPanel）；`x:Phase`（0 背景、1 文本、2 图标）分阶段渲染。
 
 ## 5. 窗口定位与容差
-- [ ] 定位流程：获取光标 -> `DisplayArea.GetFromPoint` -> 计算 WorkArea/DisplayRect 差值推断任务栏边；主任务栏信息通过 `SHAppBarMessage(ABM_GETTASKBARPOS)` 参考。
-- [ ] 无法确定任务栏位置时，回退当前屏幕底部居中上移 48px；最终 Clamp 保证窗口在 WorkArea 内。
-- [ ] 考虑 DPI 缩放 ±1px 容差，避免差分误判。
+- [x] 定位流程：获取光标 -> `DisplayArea.GetFromPoint` -> 计算 WorkArea/DisplayRect 差值推断任务栏边；主任务栏信息通过 `SHAppBarMessage(ABM_GETTASKBARPOS)` 参考。
+- [x] 无法确定任务栏位置时，回退当前屏幕底部居中上移 48px；最终 Clamp 保证窗口在 WorkArea 内。
+- [x] 考虑 DPI 缩放 ±1px 容差，避免差分误判。
 - [ ] 验证：副屏、顶部/左侧任务栏场景定位正确（回落到主屏视为缺陷）。
-- [ ] 任务栏点击行为：点击任务栏图标显示窗口，再次点击或失焦隐藏，显示/隐藏切换无闪烁。
+- [x] 任务栏点击行为：点击任务栏图标显示窗口，再次点击或失焦隐藏，显示/隐藏切换无闪烁。
 
 ## 6. 应用执行与菜单
-- [ ] 左键启动：`ProcessStartInfo UseShellExecute=true`；捕获 `Win32Exception`，UAC 取消 (`NativeErrorCode==1223`) 静默。
-- [ ] 右键菜单：Run as Administrator（Verb=runas，取消静默）与 Open File Location（定位到 LNK 所在目录并选中）。
-- [ ] 启动后立即隐藏窗口。
+- [x] 左键启动：`ProcessStartInfo UseShellExecute=true`；捕获 `Win32Exception`，UAC 取消 (`NativeErrorCode==1223`) 静默。
+- [x] 右键菜单：Run as Administrator（Verb=runas，取消静默）与 Open File Location（定位到 LNK 所在目录并选中）。
+- [x] 启动后立即隐藏窗口。
 
 ## 7. 性能与度量
-- [ ] 冷启动计时：使用 `Stopwatch` 记录 Activation -> First Show，目标 ≤200ms；必要时输出 ETW/EventSource 方便回归。
+- [x] 冷启动计时：使用 `Stopwatch` 记录 Activation -> First Show，目标 ≤200ms；必要时输出 ETW/EventSource 方便回归。
 - [ ] 滚动体验：虚拟化 + 分层渲染确保 60fps；列表大数据量下无掉帧。
 - [ ] 内存：静默驻留 <30MB；峰值 <50MB，GC 回落。
 
 ## 8. 兼容性与稳定性
 - [ ] DPI 100%-200% 文字/图标清晰无模糊；高分屏验证。
-- [ ] Win10 降级：Acrylic 不可用时自动退纯色且不崩溃。
-- [ ] AOT 发布：rd.xml/Trimming 配置完整；单文件运行无 MissingMetadata/绑定失效。
-- [ ] 路径特例：含空格、中文、特殊字符的 LNK（如 `C:\Test & Folder\应用 (v1.0).lnk`）可正常启动。
-- [ ] FileSystemWatcher Dispose：退出或对象销毁时释放，防止占用句柄影响删除快捷方式。
+- [x] Win10 降级：Acrylic 不可用时自动退纯色且不崩溃。
+- [x] AOT 发布：rd.xml/Trimming 配置完整；单文件运行无 MissingMetadata/绑定失效。
+- [x] 路径特例：含空格、中文、特殊字符的 LNK（如 `C:\Test & Folder\应用 (v1.0).lnk`）可正常启动。
+- [x] FileSystemWatcher Dispose：退出或对象销毁时释放，防止占用句柄影响删除快捷方式。
 
 ## 9. 发布前自检（基于 Dev.md 最终版）
 - [ ] 单实例重定向正常；热唤醒弹窗。

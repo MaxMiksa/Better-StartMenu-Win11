@@ -2,7 +2,15 @@
     x:Class="StartDeck.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:StartDeck">
+    xmlns:local="using:StartDeck"
+    xmlns:controls="using:Microsoft.UI.Xaml.Controls">
     <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <controls:XamlControlsResources />
+            </ResourceDictionary.MergedDictionaries>
+            <!-- Fallback brush when MicaAlt not available -->
+            <SolidColorBrush x:Key="MicaBaseAltBackground" Color="{ThemeResource SolidBackgroundFillColorBase}" />
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
