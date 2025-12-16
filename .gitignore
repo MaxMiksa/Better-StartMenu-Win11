@@ -113,3 +113,7 @@ _*.js
 wapproj/
 *.wapproj.user
 *.pubxml.user
+dist/
+# Archive/
+# AI_RELEASE_RULES.md
+# CHECKLIST.md
