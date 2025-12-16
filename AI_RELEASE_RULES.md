@@ -116,13 +116,25 @@ For each major change, use a `### Feature/功能` block containing exactly these
     *   Status/Version
 
 #### 2. The "Hook" (Highlights)
-*   **Format**: 3-4 bullet points.
-*   **Content**: Short, punchy value propositions (e.g., "No Install", "Privacy First", "Fast").
+*   **Format**: 3 lines starting with ✅.
+*   **Constraint**: End each line with **two spaces** to ensure correct Markdown line breaks.
+*   **Line 1**: Features / Pain points solved (e.g., No Installation, Privacy First).
+*   **Line 2**: Basic Functional summary (e.g., Video Merging, Audio Muxing)，NOT FEATURES！
+*   **Line 3**: Applicable platform / File type (e.g., Windows 11, .MP4).
 
 **Sample:**
-✅ No Installation (Click-to-use) | No Data Upload | Bilingual (CN/EN) | Fast & Free
-✅ Video Merging | Audio Merging | Audio & Video Muxing
-✅ .M4S | .MP4 | .MP3
+
+```markdown
+✅ **无需安装（即点即用）| 无需上传数据 | 双语支持（中/英）| 快速且免费**  
+✅ **视频合并 | 音频合并 | 音视频混流**  
+✅ **.M4S | .MP4 | .MP3**
+```
+
+```markdown
+✅ **No Installation (Click-to-use) | No Data Upload | Bilingual (CN/EN) | Fast & Free**  
+✅ **Video Merging | Audio Merging | Audio & Video Muxing**  
+✅ **.M4S | .MP4 | .MP3**   
+```
 
 **Visual Demo**
 *   **Action**: Embed a high-quality GIF or Image from the `Presentation/` folder.

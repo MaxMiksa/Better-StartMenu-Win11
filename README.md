@@ -2,9 +2,9 @@
 
 ![License](https://img.shields.io/badge/License-MIT-blue.svg) ![Platform](https://img.shields.io/badge/Platform-Windows%2011%20%2F%2010-blue) ![Status](https://img.shields.io/badge/Status-v0.1.0%20(Preview)-orange)
 
-✅ **Instant Launch** (Native AOT) | **Zero Dependency** (Single .exe) | **Privacy First** (Local Only)
-✅ **Native UI** (Mica Material) | **Smart Filtering** (No Junk) | **Hot Wake** (Always Ready)
-
+✅ Instant Launch (Native AOT) | Zero Dependency (Local) | Native UI (Mica Material)  
+✅ Launch Apps (Index) | Search Apps (Smart Filter) | System Control (Power Menu)  
+✅ Windows 11 / 10 (x64) | Single Executable (.exe) | Portable (No Install)  
 <br/>
 
 <div align="center">

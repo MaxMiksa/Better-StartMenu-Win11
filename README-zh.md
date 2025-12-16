@@ -2,9 +2,9 @@
 
 ![License](https://img.shields.io/badge/License-MIT-blue.svg) ![Platform](https://img.shields.io/badge/Platform-Windows%2011%20%2F%2010-blue) ![Status](https://img.shields.io/badge/Status-v0.1.0%20(Preview)-orange)
 
-✅ **极速启动** (Native AOT) | **零依赖** (单一 .exe) | **隐私优先** (完全本地)
-✅ **原生 UI** (Mica 云母材质) | **智能过滤** (拒绝垃圾) | **热唤醒** (随时待命)
-
+✅ 极速启动 (Native AOT) | 零依赖 (本地运行) | 原生 UI (Mica 云母材质)  
+✅ 启动应用 (自动索引) | 搜索应用 (智能过滤) | 系统控制 (电源菜单)  
+✅ Windows 11 / 10 (x64) | 单一可执行文件 (.exe) | 绿色免安装 (Portable)  
 <br/>
 
 <div align="center">
