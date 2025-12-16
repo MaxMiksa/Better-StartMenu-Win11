@@ -67,9 +67,9 @@
 本项目采用 MIT 许可证分发。详情请参阅 `LICENSE` 文件。
 </details>
 
-## Contribution & Contact
+## 🤝 贡献与联系
 
-Welcome to submit Issues and Pull Requests!
-Any questions or suggestions? Please contact Zheyuan (Max) Kong (Carnegie Mellon University, Pittsburgh, PA).
+欢迎提交 Issue 和 Pull Request！  
+如有任何问题或建议，请联系 Zheyuan (Max) Kong (卡内基梅隆大学，宾夕法尼亚州)。
 
 Zheyuan (Max) Kong: kongzheyuan@outlook.com | zheyuank@andrew.cmu.edu
