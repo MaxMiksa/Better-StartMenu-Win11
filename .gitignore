@@ -114,6 +114,6 @@ wapproj/
 *.wapproj.user
 *.pubxml.user
 dist/
-# Archive/
+Archive/
 # AI_RELEASE_RULES.md
 # CHECKLIST.md
