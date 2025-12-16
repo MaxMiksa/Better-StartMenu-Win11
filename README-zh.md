@@ -70,6 +70,6 @@
 ## Contribution & Contact
 
 Welcome to submit Issues and Pull Requests!
-Any questions or suggestions? Please contact Max Kong (Carnegie Mellon University, Pittsburgh, PA).
+Any questions or suggestions? Please contact Zheyuan (Max) Kong (Carnegie Mellon University, Pittsburgh, PA).
 
-Max Kong: kongzheyuan@outlook.com | zheyuank@andrew.cmu.edu
+Zheyuan (Max) Kong: kongzheyuan@outlook.com | zheyuank@andrew.cmu.edu

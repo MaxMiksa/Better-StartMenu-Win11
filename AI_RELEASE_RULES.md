@@ -102,6 +102,12 @@ For each major change, use a `### Feature/功能` block containing exactly these
 **Philosophy:** User-centric, Visual-first, Clutter-free.
 **Constraint:** When creating from scratch, strict adherence to this structure is required.
 
+**Git Ignore Rules:**
+*   Ensure the following files are added to `.gitignore` to keep the repository clean from development artifacts and AI instructions:
+    *   `Archive/` (Historical design docs)
+    *   `AI_RELEASE_RULES.md` (AI instructions)
+    *   `CHECKLIST.md` (Dev tracking)
+
 #### 1. Header & Navigation
 *   **Title**: `# Project Name | [Link to Other Language]`
 *   **Badges**: Place immediately below title. Use SVG badges (Shields.io style) for:
@@ -152,15 +158,26 @@ All secondary information MUST be folded to keep the README clean. Use:
 *   **FAQ / Troubleshooting**.
 
 #### 6. Contribution & Contact (Hardcoded Template)
-**MUST** be copied exactly as follows:
+**MUST** be copied exactly as follows in `README.md` (Default/English):
 
 ```markdown
 ## Contribution & Contact
 
 Welcome to submit Issues and Pull Requests!
-Any questions or suggestions? Please contact Max Kong (Carnegie Mellon University, Pittsburgh, PA).
+Any questions or suggestions? Please contact Zheyuan (Max) Kong (Carnegie Mellon University, Pittsburgh, PA).
 
-Max Kong: kongzheyuan@outlook.com | zheyuank@andrew.cmu.edu
+Zheyuan (Max) Kong: kongzheyuan@outlook.com | zheyuank@andrew.cmu.edu
+```
+
+**MUST** be copied exactly as follows in `README-zh.md` (Chinese):
+
+```markdown
+## 🤝 贡献与联系
+
+欢迎提交 Issue 和 Pull Request！  
+如有任何问题或建议，请联系 Zheyuan (Max) Kong (卡内基梅隆大学，宾夕法尼亚州)。
+
+Zheyuan (Max) Kong: kongzheyuan@outlook.com | zheyuank@andrew.cmu.edu
 ```
 
 ---
