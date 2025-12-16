@@ -1,0 +1,7 @@
+GetCursorPos
+SHAppBarMessage
+SHGetFileInfo
+ExtractIconEx
+IShellLinkW
+IPersistFile
+DestroyIcon
