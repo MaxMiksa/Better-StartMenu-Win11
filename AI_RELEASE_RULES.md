@@ -173,7 +173,7 @@ All secondary information MUST be folded to keep the README clean. Use:
 **MUST** be copied exactly as follows in `README.md` (Default/English):
 
 ```markdown
-## Contribution & Contact
+## 🤝 Contribution & Contact
 
 Welcome to submit Issues and Pull Requests!
 Any questions or suggestions? Please contact Zheyuan (Max) Kong (Carnegie Mellon University, Pittsburgh, PA).

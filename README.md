@@ -67,7 +67,7 @@
 Distributed under the MIT License. See `LICENSE` for more information.
 </details>
 
-## Contribution & Contact
+## 🤝 Contribution & Contact
 
 Welcome to submit Issues and Pull Requests!
 Any questions or suggestions? Please contact Zheyuan (Max) Kong (Carnegie Mellon University, Pittsburgh, PA).
